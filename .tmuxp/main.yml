@@ -1,0 +1,59 @@
+---
+
+# Generated from template: tmuxp
+# Version: 0.1.0
+
+session_name: collector
+start_directory: "${PROJECT_ROOT}"
+shell_command_before:
+  - '[ -f venv/bin/activate ] && source venv/bin/activate && reset'
+windows:
+  - window_name: Main
+    layout: main-horizontal
+    options:
+      automatic-rename: 'off'
+      main-pane-height: 20
+    panes:
+      - focus: true
+        shell_command:
+          - clear
+          - env | grep VIRTUAL_ENV
+      - shell_command:
+          - watch -t -n30 'echo "List of Tmux sessions (ref 30s)" && echo && tmux lsw -a'
+
+  - window_name: Vagrant
+    layout: main-horizontal
+    options:
+      automatic-rename: 'off'
+      main-pane-height: 45
+    panes:
+      - focus: true
+        shell_command:
+          - vagrant status
+      - shell_command:
+          - clear
+          - echo "For auto-sync run command vagrant rsync-auto"
+
+  - window_name: Docker
+    layout: main-horizontal
+    options:
+      automatic-rename: 'off'
+      main-pane-height: 20
+    panes:
+      - focus: "True"
+        shell_command:
+          - watch -t -n15 'echo "Docker running containers (ref 15s)" && echo && docker ps'
+      - shell_command:
+          - watch -t -n15 'echo "Docker images" && echo && docker images'
+
+  - window_name: Help
+    start_directory: "${PWD}"
+    layout: tiled
+    options:
+      automatic-rename: 'off'
+      main-pane-height: 45
+    panes:
+      - focus: true
+        shell_command:
+          - clear
+          - cat README.rst
