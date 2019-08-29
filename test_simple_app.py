@@ -1,4 +1,8 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python
 
-import .simple_app
 
+from collector import simple_app
+
+
+def test_print_hello():
+    assert simple_app.print_hello()=='Hello'
