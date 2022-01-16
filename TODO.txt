@@ -1,0 +1,5 @@
+Add information about python.
+
+Python 2.7 is no longer supported.
+Please create working code only for those python which is worth to work with.
+
