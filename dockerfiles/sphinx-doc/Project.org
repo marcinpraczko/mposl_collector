@@ -1,0 +1,8 @@
+* Sphinx-Doc in Docker
+
+** [/] [%] Goal 01
+
+- [ ] Build Docker via Dockerfile and Makefile
+- [ ] Create simple Sphinx-Doc page
+- [ ] Deploy this to local minikube
+
