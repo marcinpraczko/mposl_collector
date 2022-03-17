@@ -1,8 +1,31 @@
 * Sphinx-Doc in Docker
 
-** [/] [%] Goal 01
+** [5/7] [71%] Goal 01
 
-- [ ] Build Docker via Dockerfile and Makefile
-- [ ] Create simple Sphinx-Doc page
-- [ ] Deploy this to local minikube
+- [X] Build Docker via Dockerfile
 
+This was done - with docker-compose
+
+Req:
+
+#+BEGIN_SRC bash
+alias docker-compose=/usr/local/bin/docker-compose
+#+END_SRC
+
+- [X] Build with Docker-compose - Works
+- [-] [2/3] Build with Makefile
+
+  From some reason is not working - not sure why
+
+  - [X] docker-compose build
+  - [X] docker-compose up
+  - [ ] docker-compose down
+
+- [ ] Add sphinx-doc-rtd CSS - based on Today learning
+- [X] Create simple Sphinx-Doc page
+
+This is done - initial page
+
+- [X] Remove hardcoded path in docs - repace it with ENV
+- [X] Adjust docs / Docker file to run nginx (after build) - copy artifact
+- [ ] Deploy doc image to local minikube

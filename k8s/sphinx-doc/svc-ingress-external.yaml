@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mp-sphinx-doc
+  namespace: kube-system
+spec:
+  type: ExternalName
+  externalName: mp-sphinx-doc.default.svc.cluster.local
