@@ -2,19 +2,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: mp-sphinx-doc
+  name: sphinx-doc-docs
   namespace: kube-system
 spec:
   ingressClassName: nginx
   rules:
-  - host: mp-sphinx-doc.test
+  - host: sphinx-doc-docs.test
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: mp-sphinx-doc
+            name: sphinx-doc-docs
             port: 
               number: 8080
 ---
@@ -22,18 +22,18 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mp-sphinx-doc
+  name: sphinx-doc-docs
 spec:
   selector:
     matchLabels:
-      app: mp-sphinx-doc
+      app: sphinx-doc-docs
   template:
     metadata:
       labels:
-        app: mp-sphinx-doc
+        app: sphinx-doc-docs
     spec:
       containers:
-        - name: mp-sphinx-doc
+        - name: sphinx-doc-docs
           image: docker.io/library/mp-sphinx-docs:0.1.0
           resources:
             limits:
@@ -45,20 +45,20 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mp-sphinx-doc
+  name: sphinx-doc-docs
   namespace: kube-system
 spec:
   type: ExternalName
-  externalName: mp-sphinx-doc.default.svc.cluster.local
+  externalName: sphinx-doc-docs.default.svc.cluster.local
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mp-sphinx-doc
+  name: sphinx-doc-docs
 spec:
   type: NodePort
   selector:
-    app: mp-sphinx-doc
+    app: sphinx-doc-docs
   ports:
   - name: http
     port: 8080
