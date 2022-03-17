@@ -28,4 +28,5 @@ This is done - initial page
 
 - [X] Remove hardcoded path in docs - repace it with ENV
 - [X] Adjust docs / Docker file to run nginx (after build) - copy artifact
-- [ ] Deploy doc image to local minikube
+- [X] Deploy doc image to local minikube
+- [X] Add to Makefile apply kubectl config
