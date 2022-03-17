@@ -1,0 +1,65 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mp-sphinx-doc
+  namespace: kube-system
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: mp-sphinx-doc.test
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mp-sphinx-doc
+            port: 
+              number: 8080
+---
+# minikube image load mp-finanses-ing-processor:latest 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mp-sphinx-doc
+spec:
+  selector:
+    matchLabels:
+      app: mp-sphinx-doc
+  template:
+    metadata:
+      labels:
+        app: mp-sphinx-doc
+    spec:
+      containers:
+        - name: mp-sphinx-doc
+          image: docker.io/library/mp-sphinx-docs:0.1.0
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mp-sphinx-doc
+  namespace: kube-system
+spec:
+  type: ExternalName
+  externalName: mp-sphinx-doc.default.svc.cluster.local
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mp-sphinx-doc
+spec:
+  type: NodePort
+  selector:
+    app: mp-sphinx-doc
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 80
