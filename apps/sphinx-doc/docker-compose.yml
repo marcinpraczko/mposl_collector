@@ -4,12 +4,12 @@ services:
 
   sphinx-util:
     build: ./utils
-    image: sphinx-doc-utils:0.1.0
+    image: mpc-sphinx-doc-utils:0.1.0
 
   sphinx-docs:
     depends_on:
       - sphinx-util
     build: ./docs
-    image: sphinx-doc-docs:0.1.0
+    image: mpc-sphinx-doc-docs:0.1.0
     ports:
       - 8080:80

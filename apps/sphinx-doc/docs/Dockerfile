@@ -1,5 +1,5 @@
 # --- BUILD ---
-FROM sphinx-doc-utils:0.1.0 as build
+FROM mpc-sphinx-doc-utils:0.1.0 as build
 
 WORKDIR /usr/src/doc
 COPY . .
