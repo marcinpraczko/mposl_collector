@@ -23,6 +23,8 @@ THIS_MAKEFILE_VER = 0.1.0
 help: ## HELP: Show this help message.
 	@echo 'usage: make [target] ...'
 	@echo
+	@echo 'Version: $(THIS_MAKEFILE_VER)' 
+	@echo
 	@echo 'Targets:'
 	@echo '========'
 	@egrep '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | column -t -c 2 -s ':#'
@@ -37,10 +39,12 @@ init-local-check-update: ## INIT-LOCAL: Check for available update for this Make
 	@echo -n "Available version : "
 	@curl $(THIS_MAKEFILE_VER_URL)
 
+
 .PHONY: init-local-update
 init-local-update: ## INIT-LOCAL: Download newer version of this Makefile
 	@echo "Downloading newer version for this 'Makefile'"
 	@wget -O Makefile $(THIS_MAKEFILE)
+
 
 .PHONY: init-local-setup
 init-local-setup: ## INIT-LOCAL: Create initial structure on local folder
