@@ -12,6 +12,9 @@
 LCD = $(shell pwd)
 
 # https://github.com/marcinpraczko/collector/blob/master/quick-start/Makefile-verinfo.txt
+# TODO: This is hardcoded so far - would be nice to add URL Prefifx as variable - will be easier to testing
+# TODO: Add above task to GH as an issue
+THIS_MAKEFILE = https://raw.githubusercontent.com/marcinpraczko/collector/5-add-simple-makefile-for-downloading-modules-from-repo/quick-start/Makefile
 THIS_MAKEFILE_VER_URL = https://raw.githubusercontent.com/marcinpraczko/collector/5-add-simple-makefile-for-downloading-modules-from-repo/quick-start/Makefile-verinfo.txt
 THIS_MAKEFILE_VER_FILENAME = Makefile-verinfo.txt
 THIS_MAKEFILE_VER = 0.1.0
@@ -37,7 +40,7 @@ init-local-check-update: ## INIT-LOCAL: Check for available update for this Make
 .PHONY: init-local-update
 init-local-update: ## INIT-LOCAL: Download newer version of this Makefile
 	@echo "Downloading newer version for this 'Makefile'"
-	@wget -O Makefile $(THIS_MAKEFILE_VER_URL)
+	@wget -O Makefile $(THIS_MAKEFILE)
 
 .PHONY: init-local-setup
 init-local-setup: ## INIT-LOCAL: Create initial structure on local folder
@@ -49,4 +52,3 @@ init-dump-version: ## INIT: Dump version for this Makefile
 	@echo "Dumping version for this 'Makefile' to file: $(THIS_MAKEFILE_VER_FILENAME)"
 	@echo "$(THIS_MAKEFILE_VER)" > $(THIS_MAKEFILE_VER_FILENAME)
 	@cat $(THIS_MAKEFILE_VER_FILENAME)
-
