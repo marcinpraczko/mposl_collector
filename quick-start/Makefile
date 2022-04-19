@@ -11,11 +11,10 @@
 # Variables related with folders
 LCD = $(shell pwd)
 
-# https://github.com/marcinpraczko/collector/blob/master/quick-start/Makefile-verinfo.txt
 # TODO: This is hardcoded so far - would be nice to add URL Prefifx as variable - will be easier to testing
 # TODO: Add above task to GH as an issue
-THIS_MAKEFILE = https://raw.githubusercontent.com/marcinpraczko/collector/5-add-simple-makefile-for-downloading-modules-from-repo/quick-start/Makefile
-THIS_MAKEFILE_VER_URL = https://raw.githubusercontent.com/marcinpraczko/collector/5-add-simple-makefile-for-downloading-modules-from-repo/quick-start/Makefile-verinfo.txt
+THIS_MAKEFILE = https://raw.githubusercontent.com/marcinpraczko/collector/master/quick-start/Makefile
+THIS_MAKEFILE_VER_URL = https://raw.githubusercontent.com/marcinpraczko/collector/master/quick-start/Makefile-verinfo.txt
 THIS_MAKEFILE_VER_FILENAME = Makefile-verinfo.txt
 THIS_MAKEFILE_VER = 0.1.1
 
