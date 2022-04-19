@@ -17,7 +17,7 @@ LCD = $(shell pwd)
 THIS_MAKEFILE = https://raw.githubusercontent.com/marcinpraczko/collector/5-add-simple-makefile-for-downloading-modules-from-repo/quick-start/Makefile
 THIS_MAKEFILE_VER_URL = https://raw.githubusercontent.com/marcinpraczko/collector/5-add-simple-makefile-for-downloading-modules-from-repo/quick-start/Makefile-verinfo.txt
 THIS_MAKEFILE_VER_FILENAME = Makefile-verinfo.txt
-THIS_MAKEFILE_VER = 0.1.0
+THIS_MAKEFILE_VER = 0.1.1
 
 .PHONY: help
 help: ## HELP: Show this help message.
