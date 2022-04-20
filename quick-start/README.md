@@ -6,7 +6,7 @@ This makefile has been created to help with repeatable tasks which can be done o
 
 ```bash
 mkdir .mp-collector
-wget https://github.com/marcinpraczko/collector/blob/5-add-simple-makefile-for-downloading-modules-from-repo/quick-start/Makefile
+wget https://github.com/marcinpraczko/collector/blob/master/quick-start/Makefile
 make
 ```
 
