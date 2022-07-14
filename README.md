@@ -17,3 +17,6 @@ cd apps/sphinx-doc
 make
 ```
 
+## Snippets
+
+Please navigate to: [snippets](snippets) folder.
