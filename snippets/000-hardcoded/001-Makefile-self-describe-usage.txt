@@ -6,7 +6,12 @@
 #
 # Add the following 'help' target to your Makefile
 # And add help text after each target name starting with '\#\#'
+# 
+# Downloaded from:
+#   https://raw.githubusercontent.com/marcinpraczko/collector/master/snippets/000-hardcoded/001-Makefile-self-describe-usage.txt
 # ============================================================================
+
+# TODO: Please make sure that indets below are having only one TAB (this is required for Makefile)
 
 .PHONY: help
 help: ## Help: Show this help message
@@ -16,6 +21,9 @@ help: ## Help: Show this help message
         @echo '========'
         @egrep '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | column -t -c 2 -s ':#'
 
+
+# NOTE: Please add all targets below so help will be default target.
+#       This will allow run 'make' without arguments to see all available options.
 
 .PHONY: target01
 tgarget01: ## Example: Target 01
