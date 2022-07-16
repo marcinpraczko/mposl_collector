@@ -1,0 +1,51 @@
+# https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+# https://www.techielass.com/trigger-a-github-action-workflow-when-a-folder-changes/
+# https://stackoverflow.com/questions/61070925/github-actions-disable-auto-cancel-when-job-fails
+
+name: PIP Install TMUXP
+
+on:
+  push:
+    paths:
+      - "testing-pip-install/tmuxp/**"
+      - ".github/workflows/pip-install-tmuxp.yml"
+
+jobs:
+  pip-install:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 6
+      matrix:
+        python-version: ["2.7", "3.6", "3.7", "3.8", "3.9", "3.10"]
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      working-directory: ./testing-pip-install/tmuxp
+      run: |
+        python -m pip install --upgrade pip 
+        pip install -r requirements.txt
+
+    # - name: Lint with flake8
+    #   if: always()
+    #   working-directory: ./testing-pip-install/tmuxp
+    #   run: |
+    #     pip install flake8
+    #     # stop the build if there are Python syntax errors or undefined names
+    #     flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+    #     # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+    #     flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    # - name: Test with pytest
+    #   working-directory: ./testing-pip-install/tmuxp
+    #   run: |
+    #     pip install pytest
+    #     pytest
