@@ -1,20 +1,20 @@
 # https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 # https://www.techielass.com/trigger-a-github-action-workflow-when-a-folder-changes/
 
-name: Python package
+name: PIP Install TMUXP
 
 on:
   push:
     paths:
-      - "testing-pip-install/**"
-      - ".github/workflows/**"
+      - "testing-pip-install/tmuxp/**"
+      - ".github/workflows/pip-install-tmuxp.yml"
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 3
+      max-parallel: 6
       matrix:
         python-version: ["2.7", "3.6", "3.7", "3.8", "3.9", "3.10"]
 
