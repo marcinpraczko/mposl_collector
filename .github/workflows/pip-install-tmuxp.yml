@@ -11,7 +11,7 @@ on:
       - ".github/workflows/pip-install-tmuxp.yml"
 
 jobs:
-  build:
+  pip-install:
 
     runs-on: ubuntu-latest
     strategy:
