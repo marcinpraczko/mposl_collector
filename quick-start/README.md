@@ -11,5 +11,8 @@ wget -O Makefile https://raw.githubusercontent.com/marcinpraczko/collector/maste
 make
 ```
 
-- Once installed - follow commands run directly from `make` command.
+- Once installed - run following commands to setup local configuration
 
+```bash
+make init-setup
+```
