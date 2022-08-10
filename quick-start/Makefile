@@ -16,7 +16,7 @@ LCD = $(shell pwd)
 THIS_MAKEFILE = https://raw.githubusercontent.com/marcinpraczko/collector/master/quick-start/Makefile
 THIS_MAKEFILE_VER_URL = https://raw.githubusercontent.com/marcinpraczko/collector/master/quick-start/Makefile-verinfo.txt
 THIS_MAKEFILE_VER_FILENAME = Makefile-verinfo.txt
-THIS_MAKEFILE_VER = 0.1.1
+THIS_MAKEFILE_VER = 0.1.2
 
 .PHONY: help
 help: ## HELP: Show this help message.
@@ -28,9 +28,21 @@ help: ## HELP: Show this help message.
 	@echo '========'
 	@egrep '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | column -t -c 2 -s ':#'
 
+.PHONY: init-setup
+init-setup: ## INIT: Run all INIT targets in expected order
+init-setup: init-local-dump-version init-local-check-update
+
+.PHONY: init-local-dump-version
+init-local-dump-version: ## INIT: Dump version for this Makefile
+	@echo ""
+	@echo "Dumping version for this 'Makefile' to file: $(THIS_MAKEFILE_VER_FILENAME)"
+	@echo "$(THIS_MAKEFILE_VER)" > $(THIS_MAKEFILE_VER_FILENAME)
+	@cat $(THIS_MAKEFILE_VER_FILENAME)
+
 
 .PHONY: init-local-check-update
 init-local-check-update: ## INIT-LOCAL: Check for available update for this Makefile
+	@echo ""
 	@echo "Checking for available update for this 'Makefile'"
 	@echo "URL: $(THIS_MAKEFILE_VER_URL)"
 	@echo -n "Current version   : "
@@ -43,15 +55,10 @@ init-local-check-update: ## INIT-LOCAL: Check for available update for this Make
 init-local-update: ## INIT-LOCAL: Download newer version of this Makefile
 	@echo "Downloading newer version for this 'Makefile'"
 	@wget -O Makefile $(THIS_MAKEFILE)
+	@echo ""
+	@echo "NOTE: Please run command: 'make init-setup'..."
 
 
 .PHONY: init-local-setup
-init-local-setup: ## INIT-LOCAL: Create initial structure on local folder
+init-local-setup: ## INIT-LOCAL: (Not Implemented YET) Create initial structure on local folder
 	@echo "Init local: Create initial structure on local folder"
-
-
-.PHONY: init-dump-version
-init-dump-version: ## INIT: Dump version for this Makefile
-	@echo "Dumping version for this 'Makefile' to file: $(THIS_MAKEFILE_VER_FILENAME)"
-	@echo "$(THIS_MAKEFILE_VER)" > $(THIS_MAKEFILE_VER_FILENAME)
-	@cat $(THIS_MAKEFILE_VER_FILENAME)
