@@ -6,6 +6,7 @@ This makefile has been created to help with repeatable tasks which can be done o
 
 ```bash
 mkdir .mp-collector
+cd .mp-collector/
 wget -O Makefile https://raw.githubusercontent.com/marcinpraczko/collector/master/quick-start/Makefile
 make
 ```

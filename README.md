@@ -2,6 +2,7 @@
 
 Main workspace for most things which I am working with.
 
+
 ## Apps/Sphinx-doc
 
 - [ ] Migrate this initial doc to proper folder
@@ -16,6 +17,14 @@ to local instance of minikube.
 cd apps/sphinx-doc
 make
 ```
+
+
+## Quick-Start
+
+This folder is having simple commands to allow quicker work with collector project.
+
+Please check README in `quick-start` folder.
+
 
 ## Snippets
 
