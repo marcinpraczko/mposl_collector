@@ -16,7 +16,10 @@ LCD = $(shell pwd)
 THIS_MAKEFILE = https://raw.githubusercontent.com/marcinpraczko/collector/master/quick-start/Makefile
 THIS_MAKEFILE_VER_URL = https://raw.githubusercontent.com/marcinpraczko/collector/master/quick-start/Makefile-verinfo.txt
 THIS_MAKEFILE_VER_FILENAME = Makefile-verinfo.txt
-THIS_MAKEFILE_VER = 0.1.2
+THIS_MAKEFILE_VER = 0.1.3
+
+HELPER_MAIN_SCRIPT = https://raw.githubusercontent.com/marcinpraczko/collector/marcinp/gh-15/quick-start/helper-main.sh
+HELPER_MAIN_SCRIPT_FILENAME = helper-main-test.sh
 
 .PHONY: help
 help: ## HELP: Show this help message.
@@ -30,18 +33,18 @@ help: ## HELP: Show this help message.
 
 .PHONY: init-setup
 init-setup: ## INIT: Run all INIT targets in expected order
-init-setup: init-local-dump-version init-local-check-update
+init-setup: init-dump-version init-check-for-update init-download-helpers-scripts
 
-.PHONY: init-local-dump-version
-init-local-dump-version: ## INIT: Dump version for this Makefile
+.PHONY: init-dump-version
+init-dump-version: ## INIT: Dump local version for this Makefile
 	@echo ""
 	@echo "Dumping version for this 'Makefile' to file: $(THIS_MAKEFILE_VER_FILENAME)"
 	@echo "$(THIS_MAKEFILE_VER)" > $(THIS_MAKEFILE_VER_FILENAME)
 	@cat $(THIS_MAKEFILE_VER_FILENAME)
 
 
-.PHONY: init-local-check-update
-init-local-check-update: ## INIT-LOCAL: Check for available update for this Makefile
+.PHONY: init-check-for-update
+init-check-for-update: ## INIT: Check for available update for this Makefile
 	@echo ""
 	@echo "Checking for available update for this 'Makefile'"
 	@echo "URL: $(THIS_MAKEFILE_VER_URL)"
@@ -51,14 +54,25 @@ init-local-check-update: ## INIT-LOCAL: Check for available update for this Make
 	@curl $(THIS_MAKEFILE_VER_URL)
 
 
-.PHONY: init-local-update
-init-local-update: ## INIT-LOCAL: Download newer version of this Makefile
+.PHONY: init-download-updated-version
+init-download-updated-version: ## INIT: Download newer version of this Makefile
 	@echo "Downloading newer version for this 'Makefile'"
 	@wget -O Makefile $(THIS_MAKEFILE)
 	@echo ""
 	@echo "NOTE: Please run command: 'make init-setup'..."
 
 
-.PHONY: init-local-setup
-init-local-setup: ## INIT-LOCAL: (Not Implemented YET) Create initial structure on local folder
+.PHONY: init-setup-local-workspace
+init-setup-local-workspace: ## INIT: (Not Implemented YET) Create initial structure on local folder
 	@echo "Init local: Create initial structure on local folder"
+
+
+.PHONY: init-download-helpers-scripts
+init-download-helpers-scripts: ## INIT: Download all required helpers scripts
+	@echo "Downloading ALL required helpers scipts..."
+	wget -O $(HELPER_MAIN_SCRIPT_FILENAME) $(HELPER_MAIN_SCRIPT)
+	chmod 755 $(HELPER_MAIN_SCRIPT_FILENAME)
+
+.PHONY: test-run-script
+test-run-script: ## WIP-TEST: Run external script
+	./$(HELPER_MAIN_SCRIPT_FILENAME)
