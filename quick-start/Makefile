@@ -18,7 +18,7 @@ THIS_MAKEFILE_VER_URL = https://raw.githubusercontent.com/marcinpraczko/collecto
 THIS_MAKEFILE_VER_FILENAME = Makefile-verinfo.txt
 THIS_MAKEFILE_VER = 0.1.3
 
-HELPER_MAIN_SCRIPT = https://raw.githubusercontent.com/marcinpraczko/collector/marcinp/gh-15/quick-start/helper-main.sh
+HELPER_MAIN_SCRIPT = https://raw.githubusercontent.com/marcinpraczko/collector/master/quick-start/helper-main.sh
 HELPER_MAIN_SCRIPT_FILENAME = helper-main.sh
 
 .PHONY: help
