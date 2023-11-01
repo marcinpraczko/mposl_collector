@@ -6,7 +6,7 @@ COPY . .
 RUN make html
 
 # --- RUNTIME ---
-FROM nginx:1.21.6
+FROM nginx:1.25.3
 WORKDIR /usr/share/nginx/html
 
 COPY --from=build /usr/src/doc/build/html ./
