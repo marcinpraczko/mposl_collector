@@ -20,7 +20,8 @@ help: ## Help: Show this help message
 
 .PHONY: build-all-images
 build-all-images: ## Build: Build ALL images and upload them to minikube
-build-all-images: build-docker-images upload-images-to-minikube apply-kubectl-manifest
+build-all-images: build-docker-images
+# ORIG: build-all-images: build-docker-images upload-images-to-minikube apply-kubectl-manifest
 
 .PHONY: build-docker-images
 build-docker-images: ## Build: Build ALL docker images
@@ -39,3 +40,9 @@ apply-kubectl-manifest: ## Deploy: Apply k8s manifest for docker images
 run-mpc-sphinx-doc-utils-interactive: ## Run: Run docker image interactivly (Debug / Troubleshooting)
 	docker run \
 		-it --entrypoint /bin/bash mpc-sphinx-doc-utils:0.1.0
+
+.PHONY: clean-all-images
+clean-all-images: ## Clean: Clean ALL images
+	/usr/local/bin/docker-compose down
+
+
