@@ -2,7 +2,7 @@
 # RUN  : docker run -it mp/sphinx-doc:0.1.0
 # INFO : Release: Debian GNU/Linux / 11
 
-FROM python:3.9.10
+FROM python:3.9.18
 
 WORKDIR /usr/src/app
 
