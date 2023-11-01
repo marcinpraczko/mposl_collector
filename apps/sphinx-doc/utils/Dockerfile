@@ -5,7 +5,6 @@
 # INFO : https://hub.docker.com/_/python
 # INFO : https://www.debian.org/releases/
 
-# FROM python:3.11-bullseye (Works)
 FROM python:3.12-bullseye
 
 WORKDIR /usr/src/app
