@@ -2,7 +2,7 @@
 # RUN  : docker run -it mp/sphinx-doc:0.1.0
 # INFO : Release: Debian GNU/Linux / 11
 
-FROM python:3.13-rc-slim
+FROM python:3.13.0a1-bookworm
 
 WORKDIR /usr/src/app
 
