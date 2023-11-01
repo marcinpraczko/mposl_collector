@@ -1,6 +1,9 @@
 # BUILD: docker build -t mp/sphinx-doc:0.1.0 . 
 # RUN  : docker run -it mp/sphinx-doc:0.1.0
-# INFO : Release: Debian GNU/Linux / 11
+
+# Looks like python docker are based on different distros
+# INFO : https://hub.docker.com/_/python
+# INFO : https://www.debian.org/releases/
 
 # FROM python:3.11-bullseye (Works)
 FROM python:3.12-bullseye
