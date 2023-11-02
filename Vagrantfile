@@ -6,9 +6,9 @@ unless Vagrant.has_plugin?("vagrant-vbguest")
 end
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-20.04"
-  config.vm.hostname = "test01-ubuntu-2004"
-  config.vm.define "test01_ubuntu_2004"
+  config.vm.box = "bento/ubuntu-22.04"
+  config.vm.hostname = "devvm01-ubuntu-2004"
+  config.vm.define "devvm01_ubuntu_2004"
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
