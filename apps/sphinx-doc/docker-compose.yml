@@ -1,15 +1,15 @@
 # https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04
 # Make sure to use: /usr/bin/local/docker-compose
-services:
 
+services:
   sphinx-util:
-    build: ./utils
     image: mpc-sphinx-doc-utils:0.1.0
+    build: ./utils
 
   sphinx-docs:
+    image: mpc-sphinx-doc-docs:0.1.0
     depends_on:
       - sphinx-util
     build: ./docs
-    image: mpc-sphinx-doc-docs:0.1.0
     ports:
       - 8080:80
