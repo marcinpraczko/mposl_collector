@@ -5,7 +5,7 @@
 # INFO : https://hub.docker.com/_/python
 # INFO : https://www.debian.org/releases/
 
-FROM python:3.13.0a4-slim
+FROM python:3.13.0b4-slim
 
 WORKDIR /usr/src/app
 
