@@ -36,7 +36,7 @@ build-docker-images: ## Build: Docker compose: Build ALL docker images
 
 .PHONY: build-sphinx-doc-docs
 build-sphinx-doc-docs: ## Build: Docker compose: Build Sphinx-Docs docker image
-	docker compose build sphinx-docs
+	docker compose build --no-cache sphinx-docs
 
 .PHONY: run-sphinx-doc-docs
 run-sphinx-doc-docs: ## Run: Docker compose: Run Sphinx-Docs docker image

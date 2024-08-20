@@ -2,6 +2,8 @@
 # Run the Docker container with the current user's UID and GID
 # RUN1  : docker run -it --user $(id -u):$(id -g) -v $(pwd):/usr/local/src/app-src-mounted mp/sphinx-doc:0.1.1
 # RUN2  : docker run -it --user root:root -v $(pwd):/usr/local/src/app-src-mounted mp/sphinx-doc:0.1.1
+# RUN1  : docker run -it --user $(id -u):$(id -g) -v $(pwd):/usr/local/src/app-src-mounted -e VIRTUAL_ENV="/venv" -e PATH="/venv/bin:$PATH" mp/sphinx-doc:0.1.1
+# RUN2  : docker run -it --user root:root -v $(pwd):/usr/local/src/app-src-mounted -e VIRTUAL_ENV="/venv" -e PATH="/venv/bin:$PATH" mp/sphinx-doc:0.1.1
 
 # Looks like python docker are based on different distros
 # INFO : https://hub.docker.com/_/python
@@ -41,6 +43,8 @@ RUN pip install -U pip setuptools wheel
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+COPY helpers ./helpers
 
 # Switch to the 'appuser' user
 # USER appuser
