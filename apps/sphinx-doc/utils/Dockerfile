@@ -7,7 +7,8 @@
 # INFO : https://hub.docker.com/_/python
 # INFO : https://www.debian.org/releases/
 
-FROM python:3.13.0a4-slim
+# FROM python:3.13.0a4-slim
+FROM python:3.12-slim
 LABEL maintainer="Marcin Praczko <marcin.praczko@gmail.com>"
 
 WORKDIR /usr/local/src/app-build
@@ -39,9 +40,9 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install -U pip setuptools wheel
 
 COPY requirements.txt .
-# RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# # Switch to the 'appuser' user
+# Switch to the 'appuser' user
 # USER appuser
 
 # CMD [ "python", "./your-daemon-or-script.py" ]
