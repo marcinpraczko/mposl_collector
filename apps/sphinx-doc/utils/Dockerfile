@@ -8,13 +8,17 @@ LABEL maintainer="Marcin Praczko <marcin.praczko@gmail.com>"
 
 WORKDIR /usr/local/src/app-build
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
+# This dockerfile has been designed to work as a 'tool' container
+# To compile some python modules `gcc` is required
 RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get update && \
     apt-get -y install \
+        gcc \
+        graphviz \
+        libgraphviz-dev \
         python3-pip \
         python3-venv \
-        graphviz \
-        libgraphviz-dev && \
+        rsync && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
