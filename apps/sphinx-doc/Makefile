@@ -11,38 +11,55 @@
 # ============================================================================
 
 .PHONY: help
-help: ## Help: Show this help message
+help: ## Help:: Show this help message
 	@echo 'usage: make [target] ...'
 	@echo
 	@echo 'Targets:'
 	@echo '========'
 	@egrep '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | column -t -c 2 -s ':#'
 
-.PHONY: build-all-images
-build-all-images: ## Build: Build ALL images and upload them to minikube
-build-all-images: build-docker-images
-# ORIG: build-all-images: build-docker-images upload-images-to-minikube apply-kubectl-manifest
+# Define the version variable
+MPC_SPHINX_DOC_UTILS_VERSION = "0.1.1"
+MPC_SPHINX_DOC_DOCS_VERSION  = "0.1.1"
+
+MPC_SPHINX_DOC_UTILS_TAG = "mpc-sphinx-doc-utils:$(MPC_SPHINX_DOC_UTILS_VERSION)"
+MPC_SPHINX_DOC_DOCS_TAG  = "mpc-sphinx-doc-docs:$(MPC_SPHINX_DOC_DOCS_VERSION)"
+
+.PHONY: build-and-deploy-images
+build-and-deploy-images: ## Build: NOT WORKING: Build ALL images and upload them to minikube
+build-and-deploy-images: build-docker-images upload-images-to-minikube apply-kubectl-manifest
 
 .PHONY: build-docker-images
-build-docker-images: ## Build: Build ALL docker images
-	/usr/local/bin/docker-compose build
-	/usr/local/bin/docker-compose ps
+build-docker-images: ## Build: Docker compose: Build ALL docker images
+	docker compose build
+	docker compose ps
 
-.PHONY: upload-images-to-minikube
-upload-images-to-minikube: ## Deploy: Upload docker images to minikube
-	minikube image load mpc-sphinx-doc-docs:0.1.0
+.PHONY: build-sphinx-doc-docs
+build-sphinx-doc-docs: ## Build: Docker compose: Build Sphinx-Docs docker image
+	docker compose build --no-cache sphinx-docs
 
-.PHONY: apply-kubectl-manifest
-apply-kubectl-manifest: ## Deploy: Apply k8s manifest for docker images
-	kubectl apply -f k8s/sphinx-doc-docs.yaml
+.PHONY: run-sphinx-doc-docs
+run-sphinx-doc-docs: ## Run: Docker compose: Run Sphinx-Docs docker image
+	docker compose up sphinx-docs
 
 .PHONY: run-mpc-sphinx-doc-utils-interactive
-run-mpc-sphinx-doc-utils-interactive: ## Run: Run docker image interactivly (Debug / Troubleshooting)
+run-mpc-sphinx-doc-utils-interactive: ## Run: Docker: Run Sphinx-Utils image interactivly (Debug / Troubleshooting)
 	docker run \
-		-it --entrypoint /bin/bash mpc-sphinx-doc-utils:0.1.0
+		-it --entrypoint /bin/bash $(MPC_SPHINX_DOC_UTILS_TAG)
+
+.PHONY: run-mpc-sphinx-doc-docs-interactive
+run-mpc-sphinx-doc-docs-interactive: ## Run: Docker: Run Sphinx-Docs image interactivly (Debug / Troubleshooting)
+	docker run \
+		-it --entrypoint /bin/sh $(MPC_SPHINX_DOC_DOCS_TAG)
+
+.PHONY: upload-images-to-minikube
+upload-images-to-minikube: ## Deploy: Minikube: Upload docker images to minikube
+	minikube image load $(MPC_SPHINX_DOC_DOCS_TAG)
+
+.PHONY: apply-kubectl-manifest
+apply-kubectl-manifest: ## Deploy: K8S: Apply k8s manifest for docker images
+	kubectl apply -f k8s/sphinx-doc-docs.yaml
 
 .PHONY: clean-all-images
-clean-all-images: ## Clean: Clean ALL images
-	/usr/local/bin/docker-compose down
-
-
+clean-all-images: ## Clean:: Clean ALL images
+	docker compose down
