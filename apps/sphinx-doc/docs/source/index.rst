@@ -5,7 +5,7 @@ Docker Sphinx Documentation
    :maxdepth: 2
    :caption: Contents:
 
-   docker-sphinx-doc-index
+   docker-sphinx-images/index
 
 Overview
 --------

@@ -1,8 +1,3 @@
-# BUILD: docker build -t mp/sphinx-doc:0.1.1 . 
-# Run the Docker container with the current user's UID and GID
-# RUN1  : docker run -it --user $(id -u):$(id -g) -v $(pwd):/usr/local/src/app-src-mounted mp/sphinx-doc:0.1.1
-# RUN2  : docker run -it --user root:root -v $(pwd):/usr/local/src/app-src-mounted mp/sphinx-doc:0.1.1
-
 # Looks like python docker are based on different distros
 # INFO : https://hub.docker.com/_/python
 # INFO : https://www.debian.org/releases/

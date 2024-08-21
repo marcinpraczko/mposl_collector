@@ -2,6 +2,7 @@
 *~
 .vagrant/
 .vscode/
+apps/sphinx-doc/docs/source/helpers
 tmp/
 
 

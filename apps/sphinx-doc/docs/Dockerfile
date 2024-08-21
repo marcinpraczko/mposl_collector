@@ -1,5 +1,3 @@
-# RUN  : docker run -it --user root:root mpc-sphinx-doc-docs:0.1.1
-
 # --- BUILD ---
 # Define a build argument for the version
 ARG BASE_IMAGE_VERSION=0.1.1

@@ -32,10 +32,10 @@ build-and-deploy-images: build-docker-images upload-images-to-minikube apply-kub
 .PHONY: build-docker-images
 build-docker-images: ## Build: Docker compose: Build ALL docker images
 	docker compose build
-	docker compose ps
 
 .PHONY: build-sphinx-doc-docs
 build-sphinx-doc-docs: ## Build: Docker compose: Build Sphinx-Docs docker image
+build-sphinx-doc-docs: build-sphinx-doc-docs-static
 	docker compose build --no-cache sphinx-docs
 
 .PHONY: run-sphinx-doc-docs
@@ -63,3 +63,10 @@ apply-kubectl-manifest: ## Deploy: K8S: Apply k8s manifest for docker images
 .PHONY: clean-all-images
 clean-all-images: ## Clean:: Clean ALL images
 	docker compose down
+
+# --- HELPERS ---
+.PHONY: build-sphinx-doc-docs-static
+build-sphinx-doc-docs-static: ## Build: Static: Build static files (Snippets / results / etc)
+	@echo "Building Sphinx-Docs static files"
+	@echo "Syncing utils/helpers to docs/source"
+	rsync -av --delete utils/helpers docs/source/
