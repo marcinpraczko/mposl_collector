@@ -18,6 +18,8 @@ RUN make html
 
 # --- RUNTIME ---
 FROM nginx:stable-alpine as runtime
+
 WORKDIR /usr/share/nginx/html
 
+WORKDIR /usr/share/nginx/html
 COPY --from=build /usr/local/src/doc/build/html ./

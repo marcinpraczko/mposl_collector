@@ -2,8 +2,6 @@
 # Run the Docker container with the current user's UID and GID
 # RUN1  : docker run -it --user $(id -u):$(id -g) -v $(pwd):/usr/local/src/app-src-mounted mp/sphinx-doc:0.1.1
 # RUN2  : docker run -it --user root:root -v $(pwd):/usr/local/src/app-src-mounted mp/sphinx-doc:0.1.1
-# RUN1  : docker run -it --user $(id -u):$(id -g) -v $(pwd):/usr/local/src/app-src-mounted -e VIRTUAL_ENV="/venv" -e PATH="/venv/bin:$PATH" mp/sphinx-doc:0.1.1
-# RUN2  : docker run -it --user root:root -v $(pwd):/usr/local/src/app-src-mounted -e VIRTUAL_ENV="/venv" -e PATH="/venv/bin:$PATH" mp/sphinx-doc:0.1.1
 
 # Looks like python docker are based on different distros
 # INFO : https://hub.docker.com/_/python
@@ -19,7 +17,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get -y install \
         python3-pip \
-        python3-venv && \
+        python3-venv \
+        graphviz \
+        libgraphviz-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -41,11 +41,18 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 RUN pip install -U pip setuptools wheel
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Sphinx-doc
+COPY requirements/requirements-sphinx-doc.txt .
+RUN pip install --no-cache-dir -r requirements-sphinx-doc.txt
 
+# Tools
+COPY requirements/requirements-tools.txt .
+RUN pip install --no-cache-dir -r requirements-tools.txt
+
+# Helpers scripts
 COPY helpers ./helpers
 
+# TODO: This image should work with the current user's UID and GID
 # Switch to the 'appuser' user
 # USER appuser
 
