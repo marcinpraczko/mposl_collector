@@ -1,5 +1,3 @@
-# RUN  : docker run -it --user root:root mpc-sphinx-doc-docs:0.1.1
-
 # --- BUILD ---
 # Define a build argument for the version
 ARG BASE_IMAGE_VERSION=0.1.1
@@ -18,6 +16,8 @@ RUN make html
 
 # --- RUNTIME ---
 FROM nginx:stable-alpine as runtime
+
 WORKDIR /usr/share/nginx/html
 
+WORKDIR /usr/share/nginx/html
 COPY --from=build /usr/local/src/doc/build/html ./
