@@ -18,6 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
         libgraphviz-dev \
         python3-pip \
         python3-venv \
+        plantuml \
         rsync && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
