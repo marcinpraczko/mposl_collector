@@ -3,7 +3,7 @@
 # INFO : https://www.debian.org/releases/
 
 # FROM python:3.13.0a4-slim
-FROM python:3.12-slim
+FROM python:3.13.0rc2-slim
 LABEL maintainer="Marcin Praczko <marcin.praczko@gmail.com>"
 
 WORKDIR /usr/local/src/app-build
