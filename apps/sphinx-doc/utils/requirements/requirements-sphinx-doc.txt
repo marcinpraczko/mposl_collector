@@ -12,7 +12,7 @@ MarkupSafe==2.1.5
 packaging==24.1
 pydata-sphinx-theme==0.15.4
 Pygments==2.18.0
-requests==2.32.3
+requests==2.32.4
 snowballstemmer==2.2.0
 Sphinx==8.0.2
 sphinx-panels==0.4.1
