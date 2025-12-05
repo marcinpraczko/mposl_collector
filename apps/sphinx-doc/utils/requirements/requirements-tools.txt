@@ -1,6 +1,6 @@
 accessible-pygments==0.0.5
 ansible-core==2.17.7
-ansible==10.3.0
+ansible==12.2.0
 beautifulsoup4==4.12.3
 decorator==5.1.1
 feedgen==1.0.0
