@@ -15,7 +15,7 @@ COPY . .
 RUN make html
 
 # --- RUNTIME ---
-FROM nginx:stable-alpine as runtime
+FROM nginx:1.29.4-alpine3.23 as runtime
 
 WORKDIR /usr/share/nginx/html
 
